@@ -5,7 +5,7 @@ namespace NetVips.Samples
     using System.Threading.Tasks;
 
     /// <summary>
-    /// See: https://github.com/kleisauke/net-vips/issues/58
+    /// See: https://github.com/kleisauke/net-vips/issues/96
     /// </summary>
     public class RandomCropper : ISample
     {
@@ -31,11 +31,34 @@ namespace NetVips.Samples
 
         public string Execute(string[] args)
         {
-            using var fileStream = File.OpenRead(Filename);
-            using var image = Image.NewFromStream(fileStream);
+            NetVips.LeakSet(true);
 
             Parallel.For(0, 1000, new ParallelOptions {MaxDegreeOfParallelism = NetVips.ConcurrencyGet()},
-                i => RandomCrop(image, TileSize).WriteToFile($"x_{i}.png"));
+                i =>
+                {
+                    using var input = File.OpenRead(Filename);
+
+                    using var source = new SourceCustom();
+                    source.OnRead += (buffer, length) => input.Read(buffer, 0, length);
+                    source.OnSeek += (offset, origin) => input.Seek(offset, origin);
+
+                    using var output = File.OpenWrite($"x_{i}.png");
+
+                    using var target = new TargetCustom();
+                    target.OnWrite += (buffer, length) =>
+                    {
+                        output.Write(buffer, 0, length);
+                        return length;
+                    };
+                    target.OnFinish += () => output.Close();
+
+                    using var image = Image.NewFromSource(source, access: Enums.Access.Sequential);
+                    RandomCrop(image, TileSize).WriteToTarget(target, ".png");
+                }
+            );
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
 
             return "Done!";
         }
