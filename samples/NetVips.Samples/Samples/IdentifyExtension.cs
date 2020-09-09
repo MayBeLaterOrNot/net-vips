@@ -63,7 +63,7 @@ namespace NetVips.Samples
             }
         }
 
-        public string Execute(string[] args)
+        public void Execute(string[] args)
         {
             Console.WriteLine("FindLoadBuffer function (non-truncated buffer)");
             Console.WriteLine(GetExtension(File.ReadAllBytes("images/lichtenstein.jpg")));
@@ -76,8 +76,6 @@ namespace NetVips.Samples
 
             Console.WriteLine("vips-loader function (truncated buffer)");
             Console.WriteLine(GetExtensionNonTruncated(Encoding.UTF8.GetBytes("GIF89a")));
-
-            return "All done!";
         }
     }
 }

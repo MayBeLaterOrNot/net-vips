@@ -770,11 +770,11 @@ namespace NetVips.Samples
             return stringBuilder.ToString();
         }
 
-        public string Execute(string[] args)
+        public void Execute(string[] args)
         {
             File.WriteAllText("Image.Generated.cs", Generate());
 
-            return "See Image.Generated.cs";
+            Console.WriteLine("See Image.Generated.cs");
         }
     }
 }

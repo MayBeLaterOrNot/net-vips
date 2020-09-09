@@ -1,5 +1,7 @@
 namespace NetVips.Samples
 {
+    using System;
+
     /// <summary>
     /// From: https://github.com/libvips/ruby-vips#example
     /// </summary>
@@ -10,7 +12,7 @@ namespace NetVips.Samples
 
         public const string Filename = "images/lichtenstein.jpg";
 
-        public string Execute(string[] args)
+        public void Execute(string[] args)
         {
             var im = Image.NewFromFile(Filename);
 
@@ -35,7 +37,7 @@ namespace NetVips.Samples
             // finally, write the result back to a file on disk
             im.WriteToFile("embed-multiply-conv.jpg");
 
-            return "See embed-multiply-conv.jpg";
+            Console.WriteLine("See embed-multiply-conv.jpg");
         }
     }
 }

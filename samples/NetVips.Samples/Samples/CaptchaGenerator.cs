@@ -36,7 +36,7 @@ namespace NetVips.Samples
             return image.Mapim(xy);
         }
 
-        public string Execute(string[] args)
+        public void Execute(string[] args)
         {
             var random = new Random();
 
@@ -98,7 +98,7 @@ namespace NetVips.Samples
 
             final.WriteToFile("captcha.jpg");
 
-            return "See captcha.jpg";
+            Console.WriteLine("See captcha.jpg");
         }
     }
 }

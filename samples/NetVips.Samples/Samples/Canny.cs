@@ -1,5 +1,7 @@
 namespace NetVips.Samples
 {
+    using System;
+
     public class Canny : ISample
     {
         public string Name => "Canny";
@@ -7,7 +9,7 @@ namespace NetVips.Samples
 
         public const string Filename = "images/lichtenstein.jpg";
 
-        public string Execute(string[] args)
+        public void Execute(string[] args)
         {
             var im = Image.NewFromFile(Filename, access: Enums.Access.Sequential);
 
@@ -22,7 +24,7 @@ namespace NetVips.Samples
 
             im.WriteToFile("canny.jpg");
 
-            return "See canny.jpg";
+            Console.WriteLine("See canny.jpg");
         }
     }
 }

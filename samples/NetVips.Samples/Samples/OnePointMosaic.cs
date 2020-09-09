@@ -1,5 +1,6 @@
 namespace NetVips.Samples
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -33,7 +34,7 @@ namespace NetVips.Samples
             new[] {503, 959}
         };
 
-        public string Execute(string[] args)
+        public void Execute(string[] args)
         {
             Image mosaicedImage = null;
 
@@ -64,7 +65,7 @@ namespace NetVips.Samples
             mosaicedImage = mosaicedImage.Globalbalance();
             mosaicedImage.WriteToFile("1-pt-mosaic.jpg");
 
-            return "See 1-pt-mosaic.jpg";
+            Console.WriteLine("See 1-pt-mosaic.jpg");
         }
     }
 }

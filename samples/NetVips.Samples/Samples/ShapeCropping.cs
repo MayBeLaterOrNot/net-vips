@@ -33,7 +33,7 @@ namespace NetVips.Samples
 
         public const bool Crop = true;
 
-        public string Execute(string[] args)
+        public void Execute(string[] args)
         {
             var image = Image.NewFromFile(Filename, access: Enums.Access.Sequential);
             var width = image.Width;
@@ -76,7 +76,7 @@ namespace NetVips.Samples
 
             image.WriteToFile("shape.png");
 
-            return "See shape.png";
+            Console.WriteLine("See shape.png");
         }
 
         /// <summary>

@@ -1,5 +1,7 @@
 namespace NetVips.Samples
 {
+    using System;
+
     /// <summary>
     /// From: https://github.com/lovell/sharp/issues/1235#issuecomment-390907151
     /// </summary>
@@ -16,7 +18,7 @@ namespace NetVips.Samples
         // #D8E74F as CIELAB triple
         public double[] Stop = { 88.12, -23.952, 69.178 };
 
-        public string Execute(string[] args)
+        public void Execute(string[] args)
         {
             // Makes a lut which is a smooth gradient from start colour to stop colour,
             // with start and stop in CIELAB
@@ -48,7 +50,7 @@ namespace NetVips.Samples
             // Finally, write the result back to a file on disk
             im.WriteToFile("duotone.jpg");
 
-            return "See duotone.jpg";
+            Console.WriteLine("See duotone.jpg");
         }
     }
 }

@@ -103,16 +103,17 @@ namespace NetVips.Samples
             return stringBuilder.ToString();
         }
 
-        public string Execute(string[] args)
+        public void Execute(string[] args)
         {
             if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                return "This example can only be run on Windows";
+                Console.Error.WriteLine("This example can only be run on Windows");
+                return;
             }
 
             File.WriteAllText("Enums.Generated.cs", Generate());
 
-            return "See Enums.Generated.cs";
+            Console.WriteLine("See Enums.Generated.cs");
         }
     }
 }

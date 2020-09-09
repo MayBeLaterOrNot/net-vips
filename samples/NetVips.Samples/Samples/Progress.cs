@@ -10,7 +10,7 @@ namespace NetVips.Samples
         public const int TileSize = 50;
         public const string Filename = "images/sample2.v";
 
-        public string Execute(string[] args)
+        public void Execute(string[] args)
         {
             // Build test image
             var im = Image.NewFromFile(Filename, access: Enums.Access.Sequential);
@@ -26,7 +26,7 @@ namespace NetVips.Samples
 
             var avg = im.Avg();
 
-            return "Done!";
+            Console.WriteLine($"avg = {avg}");
         }
 
         private void ProgressPrint(string name, VipsProgress progress)

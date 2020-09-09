@@ -11,19 +11,17 @@ namespace NetVips.Samples
 
         public const string Uri = "https://images.weserv.nl/zebra.jpg";
 
-        public string Execute(string[] args)
+        public void Execute(string[] args)
         {
             using var web = new WebClient();
-            using (var stream = web.OpenRead(Uri))
-            {
-                var image = Image.NewFromStream(stream, access: Enums.Access.Sequential);
-                Console.WriteLine(image.ToString());
+            using var stream = web.OpenRead(Uri);
+            var image = Image.NewFromStream(stream, access: Enums.Access.Sequential);
+            Console.WriteLine(image.ToString());
 
-                using var output = File.OpenWrite("stream-network.jpg");
-                image.WriteToStream(output, ".jpg");
-            }
+            using var output = File.OpenWrite("stream-network.jpg");
+            image.WriteToStream(output, ".jpg");
 
-            return "See stream-network.jpg";
+            Console.WriteLine("See stream-network.jpg");
         }
     }
 }

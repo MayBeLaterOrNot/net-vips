@@ -1,5 +1,7 @@
 namespace NetVips.Samples
 {
+    using System;
+
     public class Emboss : ISample
     {
         public string Name => "Emboss";
@@ -7,7 +9,7 @@ namespace NetVips.Samples
 
         public const string Filename = "images/lichtenstein.jpg";
 
-        public string Execute(string[] args)
+        public void Execute(string[] args)
         {
             var im = Image.NewFromFile(Filename);
 
@@ -42,7 +44,7 @@ namespace NetVips.Samples
 
             Image.Arrayjoin(images, across: 2).WriteToFile("emboss.jpg");
 
-            return "See emboss.jpg";
+            Console.WriteLine("See emboss.jpg");
         }
     }
 }

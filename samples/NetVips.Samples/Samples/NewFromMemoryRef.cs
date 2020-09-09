@@ -11,7 +11,7 @@ namespace NetVips.Samples
         public string Name => "NewFromMemory reference test";
         public string Category => "Internal";
 
-        public string Execute(string[] args)
+        public void Execute(string[] args)
         {
             NetVips.CacheSetMax(0);
 
@@ -34,8 +34,6 @@ namespace NetVips.Samples
             average = b.Avg();
 
             Console.WriteLine($"After GC: {average}");
-
-            return "All done!";
         }
     }
 }

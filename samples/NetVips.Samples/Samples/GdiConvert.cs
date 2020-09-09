@@ -1,5 +1,6 @@
 namespace NetVips.Samples
 {
+    using System;
     using Extensions;
     using System.Drawing.Imaging;
 
@@ -10,7 +11,7 @@ namespace NetVips.Samples
 
         public const string Filename = "images/PNG_transparency_demonstration_1.png";
 
-        public string Execute(string[] args)
+        public void Execute(string[] args)
         {
             var bitmap = new System.Drawing.Bitmap(Filename);
 
@@ -61,7 +62,7 @@ namespace NetVips.Samples
             var image2 = bitmap.ToVips();
             image2.WriteToFile("gdi-to-vips2.png");*/
 
-            return "See gdi-to-vips.png";
+            Console.WriteLine("See gdi-to-vips.png");
         }
     }
 }

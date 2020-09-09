@@ -1,5 +1,7 @@
 namespace NetVips.Samples
 {
+    using System;
+
     /// <summary>
     /// From: https://github.com/libvips/lua-vips/blob/master/example/combine.lua
     /// </summary>
@@ -14,7 +16,7 @@ namespace NetVips.Samples
         public const int Left = 100;
         public const int Top = 100;
 
-        public string Execute(string[] args)
+        public void Execute(string[] args)
         {
             var main = Image.NewFromFile(MainFilename, access: Enums.Access.Sequential);
             var watermark = Image.NewFromFile(WatermarkFilename, access: Enums.Access.Sequential);
@@ -37,7 +39,7 @@ namespace NetVips.Samples
 
             combined.WriteToFile("combine.jpg");
 
-            return "See combine.jpg";
+            Console.WriteLine("See combine.jpg");
         }
     }
 }

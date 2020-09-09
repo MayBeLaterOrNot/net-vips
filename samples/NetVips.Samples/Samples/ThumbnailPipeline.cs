@@ -43,7 +43,7 @@ namespace NetVips.Samples
         }
 
 #pragma warning disable CS0162 // Unreachable code detected
-        public string Execute(string[] args)
+        public void Execute(string[] args)
         {
             // If you set a number to zero (0), it will resize on the other specified axis.
             var width = 200;
@@ -210,7 +210,7 @@ namespace NetVips.Samples
                 {"strip", true}
             });*/
 
-            return "See thumbnail.webp";
+            Console.WriteLine("See thumbnail.webp");
         }
     }
 #pragma warning restore CS0162 // Unreachable code detected
